@@ -1,0 +1,76 @@
+/* Design tokens from the extracted design system (see ../DESIGN.md). */
+
+@font-face {
+  font-family: "Airbnb Cereal VF";
+  src: url("../fonts/AirbnbCerealVF-Regular.woff2") format("woff2");
+  font-weight: 400 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  /* Color: every value is from the palette */
+  --background: #ffffff;
+  --surface: #f0f0f0;
+  --surface-soft: #f7f7f7; /* information panels */
+  --surface-faint: #f9f9f9; /* disabled round button, as in the screenshot */
+  --divider: #d8d8d8;
+  --border: #3f3f3f;
+  --text-primary: #222222;
+  --text-muted: #484848;
+  --text-secondary: #6c6c6c;
+  --accent: #ff385c;
+  --accent-pressed: #da1249;
+  --on-accent: #ffffff;
+  /* Main call to action, sampled from the live Airbnb site */
+  --gradient-cta: linear-gradient(to right, #e61e4d 0%, #e31c5f 50%, #d70466 100%);
+  --success: #038026;
+
+  /* Type: Airbnb Cereal everywhere, as on the live site. Roboto is the fallback. */
+  --font-body: "Airbnb Cereal VF", "Roboto", sans-serif;
+  --font-heading: var(--font-body);
+  --text-sm: 0.75rem;   /* 12px */
+  --text-md: 0.875rem;  /* 14px */
+  --text-lg: 1.375rem;  /* 22px */
+  --text-xl: 2rem;      /* 32px */
+
+  /* Spacing: 4px grid */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+
+  /* Radius */
+  --radius-card: 24px;
+  --radius-button: 12px;
+  --radius-image: 20px;
+  --radius-pill: 999px;
+
+  /* Elevation */
+  --shadow-150: rgba(0, 0, 0, 0.08);
+  --shadow-300: rgba(0, 0, 0, 0.12);
+  --elevation-1: 0 6px 16px var(--shadow-300);
+  --elevation-2: 0 8px 28px var(--shadow-300);
+
+  /* Motion */
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 400ms;
+  --ease-enter: cubic-bezier(0.2, 0, 0, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://unpkg.com/wrangler/config-schema.json",
+  "name": "locale",
+  "compatibility_date": "2026-11-01",
+  // Plain static site: everything in ./dist (made by build.js) is served as-is.
+  "assets": {
+    "directory": "./dist"
+  }
+}

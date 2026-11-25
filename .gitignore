@@ -1,0 +1,14 @@
+node_modules/
+.wrangler/
+.DS_Store
+dist/
+
+# Third-party brand material and the extracted design kit stay local
+fonts/
+src/assets/
+screenshots/
+references/
+airbnb-design.skill
+SKILL.md
+DESIGN.md
+CLAUDE.md

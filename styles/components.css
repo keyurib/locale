@@ -1,0 +1,248 @@
+/* Reusable pieces: buttons, chips, badges, cards, placeholders, action bar. */
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: var(--space-3) var(--space-6);
+  border: 0;
+  border-radius: var(--radius-button);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: filter var(--duration-fast) ease, background-color var(--duration-fast) ease,
+    transform var(--duration-fast) ease;
+}
+
+.btn:active { transform: scale(0.96); }
+
+.btn--primary {
+  background: var(--gradient-cta);
+  color: var(--on-accent);
+}
+.btn--primary:hover { filter: brightness(0.94); }
+
+.btn--secondary {
+  background: var(--surface);
+  color: var(--text-primary);
+}
+.btn--secondary:hover { filter: brightness(0.96); }
+
+.btn--small {
+  min-height: 36px;
+  padding: var(--space-1) var(--space-4);
+  font-size: var(--text-sm);
+}
+
+.btn:disabled {
+  background: var(--surface);
+  color: var(--text-secondary);
+  filter: none;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 40px;
+  margin-bottom: var(--space-4);
+  color: var(--text-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+.back:hover { text-decoration: underline; }
+
+/* Selectable pill chips (real checkboxes/radios, visually hidden) */
+.chip-group {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.chip-group legend {
+  margin-bottom: var(--space-3);
+  padding: 0;
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.chip-group__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.chip { position: relative; }
+
+.chip input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.chip span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: var(--space-2) var(--space-5);
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  user-select: none;
+  transition: border-color var(--duration-fast) ease,
+    box-shadow var(--duration-fast) ease, transform var(--duration-base) var(--ease-spring);
+}
+
+.chip span:hover { border-color: var(--text-primary); }
+.chip span:active { transform: scale(0.96); }
+
+.chip input:checked + span {
+  border-color: var(--accent);
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--accent);
+  font-weight: 600;
+}
+
+.chip input:checked + span::before {
+  content: "✓";
+  margin-right: var(--space-2);
+  color: var(--accent);
+}
+
+.chip input:focus-visible + span {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Static badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--divider);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--text-primary);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+/* Label on a photo, measured from the "Guest favourite" badge on airbnb.co.in */
+.photo-badge {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.925);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.01), 0 2px 4px var(--shadow-150);
+  font-size: var(--text-md);
+  font-weight: 500;
+}
+
+/* Raised card: white with a soft shadow, no border */
+.card {
+  padding: var(--space-4);
+  border-radius: var(--radius-card);
+  background: var(--background);
+  box-shadow: var(--elevation-1);
+}
+
+/* Information panel: soft grey fill, no border or shadow */
+.panel {
+  padding: var(--space-6);
+  border-radius: var(--radius-card);
+  background: var(--surface-soft);
+}
+
+/* Label above value, inside a panel */
+.facts {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.facts dt {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+}
+
+.facts dd { font-weight: 600; }
+
+@media (min-width: 600px) {
+  .facts--columns { grid-template-columns: 1fr 1fr; }
+}
+
+/* Place photo, or its placeholder */
+.media {
+  display: block;
+  flex-shrink: 0;
+  border-radius: var(--radius-image);
+  background: var(--surface);
+  object-fit: cover;
+}
+
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+}
+
+.placeholder svg {
+  width: 32px;
+  height: 32px;
+}
+
+/* Action bar: stuck to the bottom on mobile, in the page flow on desktop */
+.action-bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  margin: var(--space-8) calc(-1 * var(--space-4)) calc(-1 * var(--space-8));
+  padding: var(--space-3) var(--space-4) calc(var(--space-3) + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--divider);
+  background: var(--background);
+}
+
+.action-bar__buttons {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.action-bar__buttons > * { flex: 1; }
+
+.status {
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.status:not(:empty) {
+  margin-bottom: var(--space-3);
+  animation: rise-in var(--duration-base) var(--ease-enter) both;
+}
+
+.status--success {
+  color: var(--success);
+  font-weight: 600;
+}
+
+@media (min-width: 744px) {
+  .action-bar {
+    position: static;
+    margin: var(--space-8) 0 0;
+    padding: var(--space-6) 0 0;
+  }
+
+  .action-bar__buttons { justify-content: center; }
+  .action-bar__buttons > * { flex: 0 1 240px; }
+}

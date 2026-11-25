@@ -1,0 +1,434 @@
+/* Layout that is specific to one screen. */
+
+/* ---------- Screen 1: Create a Locale ---------- */
+.hero {
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.hero__eyebrow {
+  margin-bottom: var(--space-2);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.hero p:last-child {
+  max-width: 440px;
+  margin: var(--space-3) auto 0;
+  color: var(--text-secondary);
+}
+
+/* Compact rows, so the sticky button still fits in view on small phones */
+.trip {
+  margin-bottom: var(--space-8);
+  padding: var(--space-4) var(--space-5);
+}
+
+.trip .facts { gap: var(--space-3); }
+
+.trip .facts div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-4);
+}
+
+.trip .facts dd { text-align: right; }
+
+.create-form {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.create-form .action-bar { margin-top: 0; }
+
+/* Loading state */
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  min-height: 60vh;
+  text-align: center;
+}
+
+.loading__spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--surface);
+  border-top-color: var(--accent);
+  border-radius: 100%;
+  animation: spin 800ms linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- Screen 2: Your Locale ---------- */
+.plan__subtitle {
+  margin-top: var(--space-2);
+  color: var(--text-secondary);
+}
+
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-4) 0 var(--space-8);
+}
+
+.timeline__item {
+  position: relative;
+  padding-left: var(--space-8);
+  animation: rise-in var(--duration-slow) var(--ease-enter) both;
+  animation-delay: calc(var(--index) * 100ms);
+}
+
+.timeline__item + .timeline__item { margin-top: var(--space-6); }
+
+/* Dot */
+.timeline__item::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  background: var(--text-primary);
+}
+
+/* Connector to the next dot */
+.timeline__item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  bottom: -26px;
+  left: 5px;
+  width: 2px;
+  background: var(--divider);
+}
+
+.timeline__time {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-weight: 600;
+}
+
+/* Stop: a listing-style tile with no box around it */
+.stop {
+  position: relative;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.stop__photo {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  border-radius: var(--radius-image);
+}
+
+.stop__photo .media {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  transition: transform var(--duration-slow) var(--ease-enter);
+}
+
+.stop:hover .media { transform: scale(1.04); }
+
+.stop__info { align-self: center; }
+
+.stop h2 {
+  margin-bottom: var(--space-1);
+  font-size: 1rem;
+}
+
+.stop__link {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Stretches the name link over the whole tile so any tap opens the stop */
+.stop__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-image);
+}
+
+.stop__link:focus-visible { outline: none; }
+
+.stop:has(.stop__link:focus-visible) {
+  border-radius: var(--radius-image);
+  outline: 2px solid var(--text-primary);
+  outline-offset: 4px;
+}
+
+.stop__why { color: var(--text-muted); }
+
+.stop__cost {
+  margin-top: var(--space-2);
+  font-weight: 600;
+}
+
+/* Sits above the stretched link so Swap does not open the stop */
+.stop__swap {
+  position: relative;
+  z-index: 1;
+  margin-top: var(--space-3);
+}
+
+.stop__swap-note:not(:empty) {
+  margin-top: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-button);
+  background: var(--surface-soft);
+  animation: rise-in var(--duration-base) var(--ease-enter) both;
+}
+
+@media (min-width: 600px) {
+  .stop {
+    grid-template-columns: 264px minmax(0, 1fr);
+    gap: var(--space-4);
+  }
+
+  .stop__photo { aspect-ratio: 4 / 3; }
+}
+
+/* ---------- Screen 3: Stop details ---------- */
+.details__hero {
+  width: 100%;
+  height: 240px;
+  margin-bottom: var(--space-6);
+}
+
+.details__section {
+  margin-top: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--divider);
+}
+
+.details__section h2 { margin-bottom: var(--space-3); }
+
+.details__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.alternatives {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.alternative {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+}
+
+.alternative .media {
+  width: 64px;
+  height: 64px;
+}
+
+@media (min-width: 744px) {
+  .details__hero { height: 360px; }
+
+  .alternatives { grid-template-columns: 1fr 1fr; }
+}
+
+/* ---------- Screen 0: Locale home ---------- */
+.page--wide { max-width: 1128px; }
+
+.home__intro { margin: var(--space-2) 0 var(--space-6); }
+
+/* Ready-made plan banner */
+.banner {
+  display: grid;
+  overflow: hidden;
+  margin-bottom: var(--space-12);
+  padding: 0;
+}
+
+.banner__photo {
+  width: 100%;
+  height: 200px;
+  border-radius: 0;
+}
+
+.banner__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-5);
+}
+
+.banner__stops {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.banner__stops li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.banner__stops .media {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+}
+
+.banner__stops strong,
+.banner__stops span { display: block; }
+
+.banner__stops span {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+}
+
+.banner__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.banner__actions .btn { flex: 1 1 140px; }
+
+/* Carousels */
+.row { margin-top: var(--space-8); }
+
+.row__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-height: 32px;
+  margin-bottom: var(--space-3);
+}
+
+.row__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.row__title h3 { font-size: var(--text-lg); }
+
+.row__arrows {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--space-1);
+}
+
+/* Round 28px buttons, matching the carousel controls in the design screenshot */
+.arrow {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 100%;
+  background: var(--surface);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: transform var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
+}
+
+.arrow:hover:not(:disabled) {
+  box-shadow: var(--elevation-1);
+  transform: scale(1.04);
+}
+
+.arrow:disabled {
+  background: var(--surface-faint);
+  color: var(--divider);
+  cursor: default;
+}
+
+.arrow[hidden],
+.row__arrows[hidden] { display: none; }
+
+.row__more svg { transition: transform var(--duration-base) var(--ease-enter); }
+.row--all .row__more svg { transform: rotate(90deg); }
+
+.row__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 44%;
+  gap: var(--space-3);
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.place { scroll-snap-align: start; }
+
+.place__photo {
+  position: relative;
+  margin-bottom: var(--space-3);
+}
+
+.place .media {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+}
+
+.place h4 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: var(--text-md);
+  line-height: 1.2;
+}
+
+/* "Show all": the row wraps into a grid */
+.row--all .row__track {
+  grid-auto-flow: row;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  row-gap: var(--space-6);
+}
+
+@media (min-width: 600px) {
+  .row--all .row__track { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .row__track { grid-auto-columns: calc((100% - 2 * var(--space-3)) / 3); }
+}
+
+@media (min-width: 744px) {
+  .banner { grid-template-columns: 3fr 2fr; }
+
+  /* Fills the banner's full height without making it any taller */
+  .banner__photo {
+    height: 100%;
+    contain: size;
+  }
+
+  .banner__body { padding: var(--space-8); }
+}
+
+@media (min-width: 1024px) {
+  .row--all .row__track { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .row__track { grid-auto-columns: calc((100% - 4 * var(--space-3)) / 5); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row__track { scroll-behavior: auto; }
+}
+
+/* Very small phones: tighten screen 1 so the sticky button stays in the first view */
+@media (max-width: 360px) {
+  .hero,
+  .trip { margin-bottom: var(--space-4); }
+}
